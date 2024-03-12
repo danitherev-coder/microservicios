@@ -5,7 +5,7 @@ spring:
     config:
       server:
         git:
-          default-label: config-server
+          default-label: eureka
           uri: https://github.com/danitherev-coder/microservicios
           username: danitherev-coder
           password: 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
