@@ -8,6 +8,7 @@ eureka:
       default-zone: http://localhost:8761/eureka
     instance:
       hostname: localhost
+
 spring:
   cloud:
   gateway:
@@ -18,12 +19,12 @@ spring:
       - id: usuario-service
         uri: lb://usuario-service
         predicates:
-          - Path=/usuario/**
+          - Path=/api/v1/usuario/**
       - id: carro-service
         uri: lb://carro-service
         predicates:
-          - Path=/carro/**
+          - Path=/api/v1/carro/**
       - id: moto-service
         uri: lb://moto-service
         predicates:
-          - Path=/moto/**
+          - Path=/api/v1/moto/**
