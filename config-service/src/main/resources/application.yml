@@ -11,4 +11,4 @@ spring:
           password: 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
           search-paths: config-data
   application:
-    name: config-service
+    name: config-service  
