@@ -17,14 +17,14 @@ spring:
         enabled: true
     routes:
       - id: usuario-service
-        uri: lb://usuario-service
+        uri: http://localhost:8081
         predicates:
-          - Path=/usuario/**
+          - Path=/api/v1/usuario/**
       - id: carro-service
         uri: lb://carro-service
         predicates:
-          - Path=/carro/**
+          - Path=/api/v1/carro/**
       - id: moto-service
         uri: lb://moto-service
         predicates:
-          - Path=/moto/**
+          - Path=/api/v1/moto/**
