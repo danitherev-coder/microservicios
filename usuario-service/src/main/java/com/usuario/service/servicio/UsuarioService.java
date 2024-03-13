@@ -36,6 +36,8 @@ public class UsuarioService {
 
     // TODO: Usamos FeignClient para hacer peticiones a los otros servicios con POST
     public Carro saveCarro(Long usuarioId, Carro carro){
+        System.out.println("Usuario ID FEIGN: " + usuarioId);
+        System.out.println("Carro: " + carro);
         carro.setUsuarioId(usuarioId);
         Carro nuevoCarro = carroFeignClient.save(carro);        
         return nuevoCarro;

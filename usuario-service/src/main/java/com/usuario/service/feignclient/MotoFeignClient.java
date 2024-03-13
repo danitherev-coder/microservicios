@@ -10,15 +10,13 @@ import org.springframework.web.bind.annotation.RequestBody;
 import com.usuario.service.modelos.Moto;
 import java.util.List;
 
-@FeignClient(name = "moto-service", url = "http://localhost:8003/moto")
+@FeignClient(name = "moto-service")
 public interface MotoFeignClient {
 
-    @PostMapping
-    @LoadBalanced
+    @PostMapping("/moto")
     public Moto save(@RequestBody Moto moto);
 
     @GetMapping("/usuario/{usuarioId}")
-    @LoadBalanced
     public List<Moto> getMotos(@PathVariable Long usuarioId);
     
 }

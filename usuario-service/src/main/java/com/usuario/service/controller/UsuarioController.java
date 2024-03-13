@@ -63,6 +63,9 @@ public class UsuarioController {
     // TODO: Aca usamos FeignClient para hacer peticiones a los otros servicios con POST
     @PostMapping("/carro/{usuarioId}")
     public ResponseEntity<Carro>guardarCarro(@PathVariable Long usuarioId, @RequestBody Carro carro){
+        System.out.println("Carro asociado a usuario: " + usuarioId);
+        System.out.println("Carro: " + carro.toString());
+
         Usuario usuario = service.findById(usuarioId);
         if(usuario == null) return ResponseEntity.notFound().build();
         Carro nuevoCarro = service.saveCarro(usuarioId, carro);
