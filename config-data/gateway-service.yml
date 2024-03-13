@@ -16,7 +16,7 @@ spring:
           enabled: true
       routes:
         - id: usuario-service
-          uri:  lb://usuario-service
+          uri: lb://usuario-service
           predicates:
             - Path=/usuario/**
         - id: carro-service
@@ -27,12 +27,3 @@ spring:
           uri: lb://moto-service
           predicates:
             - Path=/moto/**
-logging:
-  level:
-    root: INFO
-    org:
-      springframework:
-        cloud:
-          gateway: trace
-            route:
-              RouteDefinitionRouteLocator: info
