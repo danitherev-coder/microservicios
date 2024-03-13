@@ -16,4 +16,6 @@ logging:
           gateway.filter: TRACE
           gateway.handler.predicate: TRACE
           gateway.route.RouteDefinitionRouteLocator: INFO
+          gateway.route.RoutePredicateHandlerMapping: INFO
+          gateway.route.RoutePredicateFactory: INFO
 

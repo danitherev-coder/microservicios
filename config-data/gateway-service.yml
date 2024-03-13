@@ -16,17 +16,17 @@ spring:
           enabled: true
       routes:
         - id: usuario-service
-          uri: lb://usuario-service
+          uri: http://localhost:8001
           predicates:
-            - Path=./usuario/**
+            - Path=/api/v1/usuario
         - id: carro-service
           uri: lb://carro-service
           predicates:
-            - Path=./carro/**
+            - Path=/carro/**
         - id: moto-service
           uri: lb://moto-service
           predicates:
-            - Path=./moto/**
+            - Path=/moto/**
 logging:
   level:
     root: INFO
@@ -36,3 +36,5 @@ logging:
           gateway: trace
             route:
               RouteDefinitionRouteLocator: info
+              RoutePredicateHandlerMapping: debug
+              RoutePredicateFactory: debug
