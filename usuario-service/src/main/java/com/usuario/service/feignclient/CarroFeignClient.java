@@ -14,8 +14,10 @@ import java.util.List;
 public interface CarroFeignClient {
     
     @PostMapping    
+    @LoadBalanced
     public Carro save(@RequestBody Carro carro);
 
     @GetMapping("/usuario/{usuarioId}")    
+    @LoadBalanced
     public List<Carro> getCarros(@PathVariable Long usuarioId);
 }
