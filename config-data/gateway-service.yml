@@ -5,10 +5,9 @@ eureka:
     fetch-registry: true
     register-with-eureka: true
     service-url:
-      default-zone: http://localhost:8761/eureka/
+      default-zone: http://localhost:8761/eureka
     instance:
       hostname: localhost
-
 spring:
   cloud:
   gateway:
@@ -19,12 +18,21 @@ spring:
       - id: usuario-service
         uri: lb://usuario-service
         predicates:
-          - Path=/api/v1/usuario/**
+          - Path=/config-data/usuario/**
       - id: carro-service
         uri: lb://carro-service
         predicates:
-          - Path=/api/v1/carro/**
+          - Path=/config-data/carro/**
       - id: moto-service
         uri: lb://moto-service
         predicates:
-          - Path=/api/v1/moto/**
+          - Path=/config-data/moto/**
+logging:
+  level:
+    root: INFO
+    org:
+      springframework:
+        cloud:
+          gateway: trace
+            route:
+              RouteDefinitionRouteLocator: info
