@@ -18,12 +18,24 @@ spring:
         - id: usuario-service
           uri: lb://usuario-service
           predicates:
-            - Path=/api/v1/usuario/**
+            - Path=/usuario/**
         - id: carro-service
           uri: lb://carro-service
           predicates:
-            - Path=/api/v1/carro/**
+            - Path=/carro/**
         - id: moto-service
           uri: lb://moto-service
           predicates:
-            - Path=/api/v1/moto/**
+            - Path=/moto/**
+logging:
+  level:
+    root: INFO
+    org:
+      springframework:
+        cloud:
+          gateway: TRACE
+          gateway.filter: TRACE
+          gateway.handler.predicate: TRACE
+          gateway.route.RouteDefinitionRouteLocator: INFO
+          gateway.route.RoutePredicateHandlerMapping: INFO
+          gateway.route.RoutePredicateFactory: INFO

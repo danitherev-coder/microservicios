@@ -17,7 +17,7 @@ import lombok.RequiredArgsConstructor;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/api/v1/moto")
+@RequestMapping("/moto")
 public class MotoController {
     private final MotoService service;
 

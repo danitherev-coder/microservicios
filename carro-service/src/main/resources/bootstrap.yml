@@ -5,3 +5,15 @@ spring:
     config:
       enabled: true
       uri: http://localhost:8081
+logging:
+  level:
+    root: INFO
+    org:
+      springframework:
+        cloud:
+          gateway: TRACE
+          gateway.filter: TRACE
+          gateway.handler.predicate: TRACE
+          gateway.route.RouteDefinitionRouteLocator: INFO
+          gateway.route.RoutePredicateHandlerMapping: INFO
+          gateway.route.RoutePredicateFactory: INFO
