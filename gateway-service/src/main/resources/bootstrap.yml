@@ -1,6 +1,6 @@
 spring:
   application:
-    name: gateway-service
+    name: gateway-service 
   cloud:
     config:
       enabled: true
@@ -13,5 +13,7 @@ logging:
       springframework:
         cloud:
           gateway: TRACE
+          gateway.filter: TRACE
+          gateway.handler.predicate: TRACE
           gateway.route.RouteDefinitionRouteLocator: INFO
 
