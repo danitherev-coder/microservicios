@@ -8,4 +8,10 @@ spring:
 
 logging:
   level:
-    org.springframework.cloud.gateway: debug
+    root: INFO
+    org:
+      springframework:
+        cloud:
+          gateway: TRACE
+          gateway.route.RouteDefinitionRouteLocator: INFO
+

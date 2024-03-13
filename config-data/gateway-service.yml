@@ -18,15 +18,15 @@ spring:
       - id: usuario-service
         uri: lb://usuario-service
         predicates:
-          - Path=/config-data/usuario/**
+          - Path=../usuario/**
       - id: carro-service
         uri: lb://carro-service
         predicates:
-          - Path=/config-data/carro/**
+          - Path=../carro/**
       - id: moto-service
         uri: lb://moto-service
         predicates:
-          - Path=/config-data/moto/**
+          - Path=../moto/**
 logging:
   level:
     root: INFO
