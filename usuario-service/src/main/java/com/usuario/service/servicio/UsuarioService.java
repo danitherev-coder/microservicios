@@ -25,6 +25,8 @@ public class UsuarioService {
     private final MotoFeignClient motoFeignClient;
 
     //TODO: Usamos RestTemplate para hacer peticiones a los otros servicios con GET
+    /* 
+     
     public List<Carro> getCarros(Long usuarioId){
         List<Carro> carros = restTemplate.getForObject("http://localhost:8002/api/v1/carro/usuario/"+usuarioId, List.class);
         return carros;
@@ -33,6 +35,7 @@ public class UsuarioService {
         List<Moto> motos = restTemplate.getForObject("http://localhost:8003/api/v1/moto/usuario/"+usuarioId, List.class);
         return motos;
     }
+    */
 
     // TODO: Usamos FeignClient para hacer peticiones a los otros servicios con POST
     public Carro saveCarro(Long usuarioId, Carro carro){
@@ -42,7 +45,14 @@ public class UsuarioService {
         Carro nuevoCarro = carroFeignClient.save(carro);        
         return nuevoCarro;
     }
-
+    public List<Carro> getCarros(Long usuarioId){
+        List<Carro> carros = carroFeignClient.getCarros(usuarioId);
+        return carros;
+    }
+    public List<Moto> getMotos(Long usuarioId){
+        List<Moto> motos = motoFeignClient.getMotos(usuarioId);
+        return motos;
+    }
     public Moto saveMoto(Long usuarioId, Moto moto){
         moto.setUsuarioId(usuarioId);
         Moto nuevaMoto = motoFeignClient.save(moto);
