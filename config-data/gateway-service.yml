@@ -16,9 +16,9 @@ spring:
           enabled: true
       routes:
         - id: usuario-service
-          uri: http://localhost:8001
+          uri:  lb://usuario-service
           predicates:
-            - Path=/api/v1/usuario
+            - Path=/api/v1/usuario/**
         - id: carro-service
           uri: lb://carro-service
           predicates:
