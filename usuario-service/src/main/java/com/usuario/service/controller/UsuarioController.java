@@ -45,8 +45,6 @@ public class UsuarioController {
     }
 
     // TODO: Aca usamos RestTemplate para hacer peticiones a los otros servicios con GET
-    // @CircuitBreaker(name = "carrosCB", fallbackMethod = "fallbackGetCarros")
-    @Retry(name = "carrosCB", fallbackMethod = "fallbackGetCarros")
     @GetMapping("/carro/{usuarioId}")
     public ResponseEntity<List<Carro>> listarCarros(@PathVariable Long usuarioId){
         Usuario usuario = service.findById(usuarioId);
@@ -56,8 +54,6 @@ public class UsuarioController {
 
         return ResponseEntity.ok(carros);
     }
-    // @CircuitBreaker(name = "motosCB", fallbackMethod = "fallbackGetMotos")
-    @Retry(name = "motosCB", fallbackMethod = "fallbackGetMotos")
     @GetMapping("/moto/{usuarioId}")
     public ResponseEntity<List<Moto>> listarMotos(@PathVariable Long usuarioId){
         Usuario usuario = service.findById(usuarioId);
@@ -68,8 +64,7 @@ public class UsuarioController {
         return ResponseEntity.ok(motos);
     }
 
-    // TODO: Aca usamos FeignClient para hacer peticiones a los otros servicios con POST
-    @CircuitBreaker(name = "carrosCB", fallbackMethod = "fallbackSaveCarros")
+    // TODO: Aca usamos FeignClient para hacer peticiones a los otros servicios con POST    
     @PostMapping("/carro/{usuarioId}")
     public ResponseEntity<Carro>guardarCarro(@PathVariable Long usuarioId, @RequestBody Carro carro){
         System.out.println("Carro asociado a usuario: " + usuarioId);
@@ -79,16 +74,14 @@ public class UsuarioController {
         if(usuario == null) return ResponseEntity.notFound().build();
         Carro nuevoCarro = service.saveCarro(usuarioId, carro);
         return ResponseEntity.ok(nuevoCarro);
-    }
-    @CircuitBreaker(name = "motosCB", fallbackMethod = "fallbackSaveMotos")
+    }    
     @PostMapping("/moto/{usuarioId}")
     public ResponseEntity<Moto> guardarMoto(@PathVariable Long usuarioId, @RequestBody Moto moto){
         Usuario usuario = service.findById(usuarioId);
         if(usuario == null) return ResponseEntity.notFound().build();
         Moto nuevaMoto = service.saveMoto(usuarioId, moto);
         return ResponseEntity.ok(nuevaMoto);
-    }
-    @CircuitBreaker(name = "vehiculosCB", fallbackMethod = "fallbackGetVehiculos")
+    }    
     @GetMapping("/vehiculos/{usuarioId}")
     public ResponseEntity<Map<String, Object>> listaDeVehiculos (@PathVariable Long usuarioId) {        
         Map<String, Object> resultado = service.getUsuarioAndVehiculos(usuarioId);
