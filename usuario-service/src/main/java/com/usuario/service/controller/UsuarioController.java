@@ -6,6 +6,7 @@ import com.usuario.service.modelos.Moto;
 import com.usuario.service.servicio.UsuarioService;
 
 import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
+import io.github.resilience4j.retry.annotation.Retry;
 import lombok.RequiredArgsConstructor;
 
 import org.springframework.http.HttpStatus;
@@ -44,7 +45,8 @@ public class UsuarioController {
     }
 
     // TODO: Aca usamos RestTemplate para hacer peticiones a los otros servicios con GET
-    @CircuitBreaker(name = "carrosCB", fallbackMethod = "fallbackGetCarros")
+    // @CircuitBreaker(name = "carrosCB", fallbackMethod = "fallbackGetCarros")
+    @Retry(name = "carrosCB", fallbackMethod = "fallbackGetCarros")
     @GetMapping("/carro/{usuarioId}")
     public ResponseEntity<List<Carro>> listarCarros(@PathVariable Long usuarioId){
         Usuario usuario = service.findById(usuarioId);
@@ -54,7 +56,8 @@ public class UsuarioController {
 
         return ResponseEntity.ok(carros);
     }
-    @CircuitBreaker(name = "motosCB", fallbackMethod = "fallbackGetMotos")
+    // @CircuitBreaker(name = "motosCB", fallbackMethod = "fallbackGetMotos")
+    @Retry(name = "motosCB", fallbackMethod = "fallbackGetMotos")
     @GetMapping("/moto/{usuarioId}")
     public ResponseEntity<List<Moto>> listarMotos(@PathVariable Long usuarioId){
         Usuario usuario = service.findById(usuarioId);
