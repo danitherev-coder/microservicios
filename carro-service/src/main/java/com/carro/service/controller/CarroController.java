@@ -13,7 +13,9 @@ import org.springframework.web.bind.annotation.RestController;
 import com.carro.service.entidades.Carro;
 import com.carro.service.servicio.CarroService;
 
+import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
 import lombok.RequiredArgsConstructor;
+
 
 @RestController
 @RequiredArgsConstructor
@@ -47,11 +49,16 @@ public class CarroController {
     }
 
     @GetMapping("/usuario/{id}")
+    @CircuitBreaker(name = "carrosCB", fallbackMethod = "fallbackObtenerCarrosPorUsuario")
     public ResponseEntity<List<Carro>> obtenerCarrosPorUsuario(@PathVariable Long id) {
         List<Carro> carros = service.byUsuarioId(id);
         if (carros.isEmpty())
             return ResponseEntity.noContent().build();
 
         return ResponseEntity.ok(carros);
+    }
+
+    private ResponseEntity<List<Carro>> fallbackObtenerCarrosPorUsuario(@PathVariable Long id, RuntimeException ex) {
+        return ResponseEntity.ok().body(null); // Aquí puedes personalizar el fallback según tus necesidades
     }
 }
