@@ -11,11 +11,9 @@ import java.util.List;
 
 @FeignClient(value = "moto-service")
 public interface MotoFeignClient {
-
     @PostMapping("/moto")
     public Moto save(@RequestBody Moto moto);
 
     @GetMapping("/moto/usuario/{usuarioId}")
     public List<Moto> getMotos(@PathVariable Long usuarioId);
-    
 }
