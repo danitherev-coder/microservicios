@@ -99,19 +99,19 @@ public class UsuarioController {
     // TODO: Fallbacks del circuit breaker para mostrar en caso de que falle la aplicacion de alun microservicio 
     // por ejemplo carros o motos
 
-    private ResponseEntity<String> fallBackGetCarros(@PathVariable Long usuarioId, RuntimeException ex){
-        return new ResponseEntity<>("El usuario: " + usuarioId + " tiene los carros en el taller", HttpStatus.OK);
-    }
-    private ResponseEntity<String> fallBackGetMotos(@PathVariable Long usuarioId, RuntimeException ex){
-        return new ResponseEntity<>("El usuario: " + usuarioId + " tiene las motos en el taller", HttpStatus.OK);
-    }
-    private ResponseEntity<String> fallBackSaveCarros(@PathVariable Long usuarioId, @RequestBody Carro carro, RuntimeException ex){
-        return new ResponseEntity<>("El usuario: " + usuarioId + " no pudo guardar el carro", HttpStatus.OK);
-    }
-    private ResponseEntity<String> fallBackSaveMotos(@PathVariable Long usuarioId, @RequestBody Moto moto, RuntimeException ex){
-        return new ResponseEntity<>("El usuario: " + usuarioId + " no pudo guardar la moto", HttpStatus.OK);
-    }
-    private ResponseEntity<String> fallBackGetVehiculos(@PathVariable Long usuarioId, RuntimeException ex){
-        return new ResponseEntity<>("El usuario: " + usuarioId + " no pudo obtener los vehiculos", HttpStatus.OK);
-    }
+    // private ResponseEntity<String> fallBackGetCarros(@PathVariable Long usuarioId, RuntimeException ex){
+    //     return new ResponseEntity<>("El usuario: " + usuarioId + " tiene los carros en el taller", HttpStatus.OK);
+    // }
+    // private ResponseEntity<String> fallBackGetMotos(@PathVariable Long usuarioId, RuntimeException ex){
+    //     return new ResponseEntity<>("El usuario: " + usuarioId + " tiene las motos en el taller", HttpStatus.OK);
+    // }
+    // private ResponseEntity<String> fallBackSaveCarros(@PathVariable Long usuarioId, @RequestBody Carro carro, RuntimeException ex){
+    //     return new ResponseEntity<>("El usuario: " + usuarioId + " no pudo guardar el carro", HttpStatus.OK);
+    // }
+    // private ResponseEntity<String> fallBackSaveMotos(@PathVariable Long usuarioId, @RequestBody Moto moto, RuntimeException ex){
+    //     return new ResponseEntity<>("El usuario: " + usuarioId + " no pudo guardar la moto", HttpStatus.OK);
+    // }
+    // private ResponseEntity<String> fallBackGetVehiculos(@PathVariable Long usuarioId, RuntimeException ex){
+    //     return new ResponseEntity<>("El usuario: " + usuarioId + " no pudo obtener los vehiculos", HttpStatus.OK);
+    // }
 }
