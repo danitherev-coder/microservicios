@@ -25,12 +25,11 @@ public interface CarroFeignClient {
     @GetMapping("/carro/usuario/{usuarioId}")        
     public List<Carro> getCarros(@PathVariable Long usuarioId);
 
-
-    private ResponseEntity<String> fallBackGetCarros(@PathVariable Long usuarioId, RuntimeException ex){
+    private ResponseEntity<String> fallbackForGetCarros(@PathVariable Long usuarioId, RuntimeException ex){
         return new ResponseEntity<>("El usuario: " + usuarioId + " tiene los carros en el taller", HttpStatus.OK);
     }
 
-    private ResponseEntity<String> fallBackSaveCarros(@PathVariable Long usuarioId, @RequestBody Carro carro, RuntimeException ex){
-        return new ResponseEntity<>("El usuario: " + usuarioId + " no pudo guardar el carro", HttpStatus.OK);
+    private ResponseEntity<Carro> fallbackForSave(@RequestBody Carro carro, RuntimeException ex){
+        return new ResponseEntity<>(null, HttpStatus.OK);
     }
 }
